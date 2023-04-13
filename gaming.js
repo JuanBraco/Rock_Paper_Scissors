@@ -28,41 +28,58 @@ let playerChoice;
 let comp_result
 let playerSelection
 let computerSelection
+const optionBtn = document.querySelectorAll('.optionBtn')
 
+optionBtn.forEach(button => { button.addEventListener('click', getPlayerChoice)})
 
-function playRound(playerSelection, computerSelection) {
-    playerChoice = prompt("What is your choice", "Rock");
-    playerSelection = capitalize(playerChoice);
+function getPlayerChoice(e) {
+    let playerSelection = (e.target.classList.value);
+    playRound(playerSelection);
+}
+
+function playRound(playerSelection) {
+    //playerChoice = prompt("What is your choice", "Rock");
+    console.log(playerSelection);
+    //playerSelection = capitalize(playerChoice);
+    //playerSelection = "Rock";
     comp_result = gameChoices[getRandomInt(3)].choice;
     computerSelection = comp_result;
     /*console.log(playerSelection)
     console.log(computerSelection)*/
+    console.log(computerSelection);
     if (playerSelection === computerSelection)
-        return "Tie game"
+    {
+        console.log("Tie game")
+        updateScore (playerScore, compScore)
+        return "Tie game";
+    }
     else if (whoWins(playerSelection, computerSelection))
     {
         playerScore++;
+        console.log("Player wins")
+        updateScore (playerScore, compScore)
         return "Player wins";
     }
     else if (whoWins(computerSelection, playerSelection))
     {
         compScore++;
+        console.log("Computer wins")
+        updateScore (playerScore, compScore);
         return "Computer wins";
     }
     else
         return "There is an error"
 }
 
-for(let i = 0; i < 5; i++) {
-    console.log(playRound(playerSelection, computerSelection))
+function updateScore (playerScore, compScore) {
     console.log("Score : Player %d / Computer %d", playerScore, compScore)
+    if (playerScore > compScore)
+        console.log("Player is a winner")
+    else if (compScore > playerScore)
+        console.log("Computer is a winner")
+    else
+        console.log("Tie game")
 }
-if (playerScore > compScore)
-    console.log("Player is a winner")
-else if (compScore > playerScore)
-    console.log("Computer is a winner")
-else
-    console.log("Tie game")
 
 
 /*console.log(playerSelection)

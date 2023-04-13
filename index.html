@@ -4,8 +4,42 @@
   <meta charset="UTF-8">
   <title>Rock_Paper_Scissors</title>
 </head>
+<style>
+h1 {
+  background: white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 0 8px rgba(0,0,0,.1);
+  padding: 8px;
+  display: flex;
+  font-weight: bold;
+
+  justify-content: center;
+}
+
+.optionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  background: rebeccapurple;
+  color: white;
+  padding: 8px 24px;
+
+}
+</style>
+
 <body>
-    <div class="title">Rock Paper Scissors Game</div>
+  <h1 >Rock Paper Scissors Game</h1>
+  <div class="optionBtn">
+    <button class="Rock">Rock</button>
+    <button class="Paper">Paper</button>
+    <button class="Scissors">Scissors</button>
+  </div>
 </body>
 <script src ="gaming.js"></script>  
 </html>
