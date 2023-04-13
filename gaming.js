@@ -25,7 +25,9 @@ let gameChoices = [{choice: "Rock", value: 0}, {choice: "Paper", value: 1}, {cho
 let playerScore = 0;
 let compScore = 0;
 let playerChoice;
-let comp_result
+let start = 0;
+let nbPlay = 0;
+let finish = 0;
 let playerSelection
 let computerSelection
 const optionBtn = document.querySelectorAll('.optionBtn')
@@ -38,47 +40,50 @@ function getPlayerChoice(e) {
 }
 
 function playRound(playerSelection) {
-    //playerChoice = prompt("What is your choice", "Rock");
-    console.log(playerSelection);
-    //playerSelection = capitalize(playerChoice);
-    //playerSelection = "Rock";
+    if (finish === 1) {
+        playerScore = 0;
+        compScore = 0;
+        finish = 0;
+    }
     comp_result = gameChoices[getRandomInt(3)].choice;
     computerSelection = comp_result;
-    /*console.log(playerSelection)
-    console.log(computerSelection)*/
-    console.log(computerSelection);
+
     if (playerSelection === computerSelection)
     {
-        console.log("Tie game")
-        updateScore (playerScore, compScore)
-        return "Tie game";
+        const result = document.querySelector('p');
+        result.textContent = 'Tie Game ';
     }
     else if (whoWins(playerSelection, computerSelection))
     {
         playerScore++;
-        console.log("Player wins")
-        updateScore (playerScore, compScore)
-        return "Player wins";
+        const result = document.querySelector('p');
+        result.textContent = 'Player wins ';
     }
     else if (whoWins(computerSelection, playerSelection))
     {
         compScore++;
-        console.log("Computer wins")
-        updateScore (playerScore, compScore);
-        return "Computer wins";
+        const result = document.querySelector('p');
+        result.textContent = 'Computer wins ';
     }
     else
         return "There is an error"
+    scorePlayer.textContent = `${playerScore}`;
+    scoreComputer.textContent = `${compScore}`;
+    nbPlay++;
+
+    if (nbPlay === 5)
+        displayScore(playerScore, compScore);
 }
 
-function updateScore (playerScore, compScore) {
-    console.log("Score : Player %d / Computer %d", playerScore, compScore)
+function displayScore (playerScore, compScore) {
+    const resultFinal = document.querySelector('p');
     if (playerScore > compScore)
-        console.log("Player is a winner")
+        resultFinal.textContent = "Player is a winner"
     else if (compScore > playerScore)
-        console.log("Computer is a winner")
+        resultFinal.textContent = "Computer is a winner"
     else
-        console.log("Tie game")
+        resultFinal.textContent = "Final tie game"
+    finish = 1;
 }
 
 
